@@ -1,0 +1,35 @@
+name: 'TODO: Fill the gadget name'
+description: 'TODO: Fill the gadget description'
+tracers:
+  events:
+    mapName: events
+    structName: event
+structs:
+  event:
+    fields:
+    - name: timestamp
+      attributes:
+        template: timestamp
+    - name: pid
+      attributes:
+        template: pid
+    - name: comm
+      attributes:
+        template: comm
+    - name: path
+      description: 'TODO: Fill field description'
+      attributes:
+        width: 20
+        alignment: left
+        ellipsis: end
+    - name: mntns_id
+      description: 'TODO: Fill field description'
+      attributes:
+        width: 20
+        alignment: left
+        ellipsis: end
+ebpfParams:
+  target_signal:
+    key: target_signal
+    defaultValue: ""
+    description: 'TODO: Fill parameter description'
