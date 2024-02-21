@@ -1,3 +1,5 @@
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/runc-vuln-gadget)](https://artifacthub.io/packages/search?repo=runc-vuln-gadget)
+
 # runc-vuln-gadget
 
 This gadget detects when the following runc vulnerability is exploited and blocks its usage.
