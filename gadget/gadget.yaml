@@ -1,7 +1,15 @@
-name: 'TODO: Fill the gadget name'
-description: 'TODO: Fill the gadget description'
+name: runc-vuln-gadget
+description: A gadget to detect runc vulnerabilities
+homepageURL: https://github.com/alban/runc-vuln-gadget
+documentationURL: https://github.com/alban/runc-vuln-gadget
+readmeMarkdownURL: https://raw.githubusercontent.com/alban/runc-vuln-gadget/main/README.md
+sourceURL: https://github.com/alban/runc-vuln-gadget
+annotations:
+  io.artifacthub.package.category: monitoring-logging
+  io.artifacthub.package.keywords: ig,inspektor-gadget
+  io.artifacthub.package.logo-url: https://raw.githubusercontent.com/inspektor-gadget/inspektor-gadget/main/docs/images/logo/icon.png
 tracers:
-  events:
+  signalgogadget:
     mapName: events
     structName: event
 structs:
