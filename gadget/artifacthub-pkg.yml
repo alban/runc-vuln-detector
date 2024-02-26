@@ -1,0 +1,100 @@
+# Artifact Hub package metadata file
+version: 0.1.0
+name: runc-vuln-gadget
+#alternativeName: Alternative name of the package (optional)
+category: security
+displayName: runc-vuln-gadget
+createdAt: 2024-02-22T15:08:46+01:00
+description: A gadget to detect runc vulnerabilities
+#logoPath: Path to the logo image file relative to the package directory (optional, but it improves package visibility)
+#logoURL: The URL of the logo image (optional, an alternative to logoPath if the image is hosted somewhere else)
+#digest: String that uniquely identifies this package version (optional)
+license: GPL-2.0-only
+homeURL: https://github.com/alban/runc-vuln-gadget
+#appVersion: The version of the app that this contains (optional)
+containersImages: # (optional)
+  - name: runc-vuln-gadget
+    image: ghcr.io/alban/runc-vuln-gadget:latest
+    #whitelisted: When set to true, this image won't be scanned for security vulnerabilities
+    platforms: # (optional)
+      - linux/amd64
+      - linux/arm64
+#containsSecurityUpdates: Whether this package version contains security updates (optional, boolean)
+#operator: Whether this package is an Operator (optional, boolean)
+#deprecated: Whether this package is deprecated (optional, boolean)
+#prerelease: Whether this package version is a pre-release (optional, boolean)
+#keywords: # (optional)
+#  - A list of keywords about this package
+#  - Using one or more categories names as keywords will improve package visibility
+#links: # (optional)
+#  - name: Title of the link (required for each link)
+#    url: URL of the link (required for each link)
+#readme: |
+  # runc-vuln-gadget
+  
+  This gadget detects when the following runc vulnerability is exploited and blocks its usage.
+  
+  [CVE-2024-21626](https://github.com/opencontainers/runc/security/advisories/GHSA-xr7r-f8xq-vfvv)
+  
+  ## How to use
+  
+  Thanks to CVE-2024-21626, a container workload can access the host filesystem:
+  
+  ```bash
+  $ docker run -ti --rm --workdir=/proc/self/fd/9 ubuntu grep ^ID= ../../../etc/os-release
+  ID=fedora
+  ```
+  
+  runc-vuln-gadget is able to detect and block CVE-2024-21626:
+  
+  ```bash
+  $ IG_EXPERIMENTAL=true sudo -E ig run ghcr.io/alban/runc-vuln-gadget:latest
+  INFO[0000] Experimental features enabled
+  RUNTIME.CONTAINERNAME MNTNS_ID   PID    COMM          PATH
+                        4026533066 409484 runc:[2:INIT] /proc/self/fd/9
+  
+  ```
+  
+  ```
+  $ docker run -ti --rm --workdir=/proc/self/fd/9 ubuntu grep ^ID= ../../../etc/os-release
+  docker: Error response from daemon: cannot start a stopped process: unknown.
+  ```
+  
+  ## Limitations
+  
+  This gadget is for demonstration only and not designed for real-world security.
+  Malicious software can easily bypass its detection capabilities.
+#install: | # (optional)
+#  Brief install instructions in markdown format
+#
+#  Content added here will be displayed when the INSTALL button on the package details page is clicked.
+#changes: # (optional - it is also possible to provide a list of strings with just the descriptions instead of using objects)
+#  - kind: added # Supported kinds are: added, changed, deprecated, removed, fixed and security
+#    description: cool feature
+#    links:
+#      - name: GitHub Issue
+#        url: https://github.com/issue-url
+#      - name: GitHub PR
+#        url: https://github.com/pr-url
+#  - kind: fixed
+#    description: minor bug
+#    links:
+#      - name: GitHub Issue
+#        url: https://github.com/issue-url
+#maintainers: # (optional)
+#  - name: The maintainer name (required for each maintainer)
+#    email: The maintainer email (required for each maintainer)
+#provider: # (optional)
+#  name: The name of the individual, company, or service that provides this package
+#ignore: # (optional, used to ignore some falco rules or opa policies files in a package)
+#  - lib # Entries use .gitignore syntax)
+#recommendations: # (optional, list of recommended packages)
+#  - url: https://artifacthub.io/packages/helm/artifact-hub/artifact-hub
+#screenshots: # (optional, list of screenshots)
+#  - title: Sample screenshot 1
+#    url: https://example.com/screenshot1.jpg
+#  - title: Sample screenshot 2
+#    url: https://example.com/screenshot2.jpg
+#annotations: # (optional, keys and values must be strings)
+#  key1: value1
+#  key2: value2
