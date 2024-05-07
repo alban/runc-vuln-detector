@@ -1,9 +1,8 @@
-name: runc-vuln-gadget
+name: runc-vuln-detector
 description: A gadget to detect runc vulnerabilities
-homepageURL: https://github.com/alban/runc-vuln-gadget
-documentationURL: https://github.com/alban/runc-vuln-gadget
-readmeMarkdownURL: https://raw.githubusercontent.com/alban/runc-vuln-gadget/main/README.md
-sourceURL: https://github.com/alban/runc-vuln-gadget
+homepageURL: https://github.com/alban/runc-vuln-detector
+documentationURL: https://github.com/alban/runc-vuln-detector
+sourceURL: https://github.com/alban/runc-vuln-detector
 annotations:
   io.artifacthub.package.category: monitoring-logging
   io.artifacthub.package.keywords: ig,inspektor-gadget

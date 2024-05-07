@@ -1,4 +1,4 @@
-CONTAINER_REPO ?= ghcr.io/alban/runc-vuln-gadget
+CONTAINER_REPO ?= ghcr.io/alban/runc-vuln-detector
 IMAGE_TAG ?= latest
 
 CLANG_FORMAT ?= clang-format
