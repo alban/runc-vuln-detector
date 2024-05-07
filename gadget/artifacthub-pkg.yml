@@ -1,6 +1,6 @@
 # Artifact Hub package metadata file
 version: 0.1.0
-name: ""
+name: "runc-vuln-detector"
 category: monitoring-logging
 displayName: "runc-vuln-detector"
 createdAt: "2024-05-07T12:44:00+01:00"
