@@ -3,21 +3,25 @@ IMAGE_TAG ?= latest
 
 CLANG_FORMAT ?= clang-format
 
+SUDO ?= sudo -E
+
+UPDATE_METADATA ?= false
+
 .PHONY: build
 build:
-	IG_EXPERIMENTAL=true sudo -E \
+	$(SUDO) \
 		ig image build \
 			-t $(CONTAINER_REPO):$(IMAGE_TAG) \
-			--update-metadata .
+			--update-metadata=$(UPDATE_METADATA) .
 
 .PHONY: run
 run:
-	IG_EXPERIMENTAL=true sudo -E \
+	$(SUDO) \
 		ig run $(CONTAINER_REPO):$(IMAGE_TAG) $$PARAMS
 
 .PHONY: push
 push:
-	IG_EXPERIMENTAL=true sudo -E \
+	$(SUDO) \
 		ig image push $(CONTAINER_REPO):$(IMAGE_TAG)
 
 push-artifacthub:

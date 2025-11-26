@@ -7,36 +7,27 @@ annotations:
   io.artifacthub.package.category: monitoring-logging
   io.artifacthub.package.keywords: ig,inspektor-gadget
   io.artifacthub.package.logo-url: https://raw.githubusercontent.com/inspektor-gadget/inspektor-gadget/main/docs/images/logo/icon.png
-tracers:
-  signalgogadget:
-    mapName: events
-    structName: event
-structs:
-  event:
+datasources:
+  runcwatcher:
     fields:
-    - name: timestamp
-      attributes:
-        template: timestamp
-    - name: pid
-      attributes:
-        template: pid
-    - name: comm
-      attributes:
-        template: comm
-    - name: path
-      description: 'TODO: Fill field description'
-      attributes:
-        width: 20
-        alignment: left
-        ellipsis: end
-    - name: mntns_id
-      description: 'TODO: Fill field description'
-      attributes:
-        width: 20
-        alignment: left
-        ellipsis: end
-ebpfParams:
-  target_signal:
-    key: target_signal
-    defaultValue: ""
-    description: 'TODO: Fill parameter description'
+      cve:
+        annotations:
+          description: 'TODO: Fill field description'
+      cve_raw:
+        annotations:
+          description: 'TODO: Fill field description'
+      details:
+        annotations:
+          description: 'TODO: Fill field description'
+      proc:
+        annotations:
+          description: 'TODO: Fill field description'
+      timestamp:
+        annotations:
+          description: 'TODO: Fill field description'
+params:
+  ebpf:
+    kill:
+      key: kill
+      defaultValue: "false"
+      description: Whether to send SIGKILL to runc when an attack is detected
