@@ -12,19 +12,21 @@ datasources:
     fields:
       cve:
         annotations:
-          description: 'TODO: Fill field description'
+          description: 'CVE detected'
+          columns.minwidth: 14
       cve_raw:
         annotations:
-          description: 'TODO: Fill field description'
+          columns.hidden: true
       details:
         annotations:
-          description: 'TODO: Fill field description'
-      proc:
+          description: 'Details of the attack'
+      reason:
         annotations:
-          description: 'TODO: Fill field description'
-      timestamp:
+          description: 'How the attack was detected'
+          columns.minwidth: 28
+      reason_raw:
         annotations:
-          description: 'TODO: Fill field description'
+          columns.hidden: true
 params:
   ebpf:
     kill:
