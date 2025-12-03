@@ -154,7 +154,7 @@ image: ghcr.io/alban/runc-vuln-detector:latest
 name: runc-vuln-detector
 paramValues:
   operator.oci.ebpf.kill: "true"
-  operator.cli.fields: comm,cve,details,reason
+  operator.otel-metrics.otel-metrics-name: runcwatcher:runcwatcher
 EOF
 $ kubectl gadget run --detach -f manifest.yaml
 ```
@@ -162,7 +162,8 @@ $ kubectl gadget run --detach -f manifest.yaml
 ```bash
 $ POD_NAME=$(kubectl get pods -n gadget -o jsonpath="{.items[0].metadata.name}")
 $ kubectl -n gadget port-forward $POD_NAME 2224:2224 &
-$ curl http://localhost:2224/metrics -s | grep runc-metrics
+$ curl http://localhost:2224/metrics -s | grep ^runcwatcher
+runcwatcher_total{cve="CVE_2025_52881",otel_scope_name="runcwatcher",otel_scope_schema_url="",otel_scope_version="",reason="REASON_PROCFS_PATH_MISMATCH"} 2
 ```
 
 ## Limitations

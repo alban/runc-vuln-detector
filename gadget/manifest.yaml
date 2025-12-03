@@ -1,0 +1,7 @@
+apiVersion: 1
+kind: instance-spec
+image: ghcr.io/alban/runc-vuln-detector:latest
+name: runc-vuln-detector
+paramValues:
+  operator.oci.ebpf.kill: "true"
+  operator.otel-metrics.otel-metrics-name: runcwatcher:runcwatcher
