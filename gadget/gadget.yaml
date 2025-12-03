@@ -9,11 +9,16 @@ annotations:
   io.artifacthub.package.logo-url: https://raw.githubusercontent.com/inspektor-gadget/inspektor-gadget/main/docs/images/logo/icon.png
 datasources:
   runcwatcher:
+    annotations:
+      metrics.collect: true
+      metrics.implicit-counter.name: eventctr
+      metrics.implicit-counter.description: number of events
     fields:
       cve:
         annotations:
           description: 'CVE detected'
           columns.minwidth: 14
+          metrics.type: key
       cve_raw:
         annotations:
           columns.hidden: true
@@ -24,6 +29,7 @@ datasources:
         annotations:
           description: 'How the attack was detected'
           columns.minwidth: 28
+          metrics.type: key
       reason_raw:
         annotations:
           columns.hidden: true
