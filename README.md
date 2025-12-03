@@ -2,9 +2,9 @@
 
 # runc-vuln-detector
 
-This gadget detects when the following runc vulnerabilities are exploited and blocks the attacks.
+This gadget aims to detect and mitigate runc vulnerabilities. Support for different CVEs is as follows:
 
-- ✅ [CVE-2024-21626](https://github.com/opencontainers/runc/security/advisories/GHSA-xr7r-f8xq-vfvv)
+- ✅ [CVE-2024-21626](https://github.com/opencontainers/runc/security/advisories/GHSA-xr7r-f8xq-vfvv): several container breakouts due to internally leaked fds
 - ✅ [CVE-2025-31133](https://github.com/opencontainers/runc/security/advisories/GHSA-9493-h29p-rfm2): container escape via "masked path" abuse due to mount race conditions
 - 🛠️ [CVE-2025-52881](https://github.com/opencontainers/runc/security/advisories/GHSA-cgrx-mc8f-2prm): container escape and denial of service due to arbitrary write gadgets and procfs write redirects
 - ❌ [CVE-2025-52565](https://github.com/opencontainers/runc/security/advisories/GHSA-qw9x-cqr3-wc7r): container escape with malicious config due to /dev/console mount and related races
