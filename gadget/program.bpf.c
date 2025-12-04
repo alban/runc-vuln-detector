@@ -23,10 +23,14 @@ enum cve_t {
   // https://github.com/opencontainers/runc/security/advisories/GHSA-xr7r-f8xq-vfvv
   CVE_2024_21626 = 0,
 
+  // container escape via "masked path" abuse due to mount race conditions
+  // https://github.com/opencontainers/runc/security/advisories/GHSA-9493-h29p-rfm2
+  CVE_2025_31133 = 1,
+
   // container escape and denial of service due to arbitrary write gadgets and
   // procfs write redirects
   // https://github.com/opencontainers/runc/security/advisories/GHSA-cgrx-mc8f-2prm
-  CVE_2025_52881 = 1,
+  CVE_2025_52881 = 2,
 };
 
 enum illegal_reason_t {
@@ -241,7 +245,7 @@ int ig_mount_x(struct syscall_trace_exit *ctx) {
 
     gadget_process_populate(&event->proc);
     event->timestamp_raw = bpf_ktime_get_boot_ns();
-    event->cve_raw = CVE_2025_52881;
+    event->cve_raw = CVE_2025_31133;
     event->reason_raw = reason;
 
     bpf_probe_read_user_str(event->details, sizeof(event->details), mctx->src);

@@ -34,7 +34,7 @@ $ sudo -E ig run ghcr.io/alban/runc-vuln-detector:latest --verify-image=false --
 WARN[0000] gadget signature verification is disabled due to using corresponding option
 WARN[0002] gadget signature verification is disabled due to using corresponding option
 COMM             CVE               DETAILS     REASON
-runc             CVE_2025_52881    /dev/null   REASON_PROCFS_PATH_MISMATCH
+runc             CVE-2025-31133    /dev/null   REASON_PROCFS_PATH_MISMATCH
 ```
 
 Alternatively, this can be blocked by the gadget with the `--kill` parameter:
@@ -44,7 +44,7 @@ $ sudo -E ig run ghcr.io/alban/runc-vuln-detector:latest --verify-image=false --
 WARN[0000] gadget signature verification is disabled due to using corresponding option
 WARN[0002] gadget signature verification is disabled due to using corresponding option
 COMM             CVE               DETAILS     REASON
-runc:[2:INIT]    CVE_2025_52881    /dev/null   REASON_PROCFS_PATH_MISMATCH
+runc:[2:INIT]    CVE-2025-31133    /dev/null   REASON_PROCFS_PATH_MISMATCH
 ```
 
 The container is stopped in this way:
@@ -64,12 +64,12 @@ $ kubectl debug --profile=sysadmin node/minikube -ti \
         ig run ghcr.io/alban/runc-vuln-detector:latest \
         --verify-image=false --fields=comm,cve,details,reason
 COMM             CVE                               DETAILS                           REASON
-runc             CVE_2025_52881                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
-runc             CVE_2025_52881                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
-runc             CVE_2025_52881                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
-runc             CVE_2025_52881                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
-runc             CVE_2025_52881                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
-runc             CVE_2025_52881                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
+runc             CVE-2025-31133                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
+runc             CVE-2025-31133                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
+runc             CVE-2025-31133                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
+runc             CVE-2025-31133                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
+runc             CVE-2025-31133                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
+runc             CVE-2025-31133                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
 ```
 
 The problematic workload was started with:
@@ -87,7 +87,7 @@ $ kubectl debug --profile=sysadmin node/minikube -ti \
         --verify-image=false --fields=comm,cve,details,reason \
         --kill
 COMM             CVE                               DETAILS                           REASON
-runc:[2:INIT]    CVE_2025_52881                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
+runc:[2:INIT]    CVE-2025-31133                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
 ```
 
 The container is stopped in this way:
@@ -113,12 +113,12 @@ $ kubectl gadget run \
         ghcr.io/alban/runc-vuln-detector:latest \
         --fields=comm,cve,details,reason
 COMM             CVE                               DETAILS                           REASON
-runc:[2:INIT]    CVE_2025_52881                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
-runc:[2:INIT]    CVE_2025_52881                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
-runc:[2:INIT]    CVE_2025_52881                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
-runc:[2:INIT]    CVE_2025_52881                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
-runc:[2:INIT]    CVE_2025_52881                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
-runc:[2:INIT]    CVE_2025_52881                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
+runc:[2:INIT]    CVE-2025-31133                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
+runc:[2:INIT]    CVE-2025-31133                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
+runc:[2:INIT]    CVE-2025-31133                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
+runc:[2:INIT]    CVE-2025-31133                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
+runc:[2:INIT]    CVE-2025-31133                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
+runc:[2:INIT]    CVE-2025-31133                    /dev/null                         REASON_PROCFS_PATH_MISMATCH
 ```
 
 This is running the gadget in the interactive mode and this will only be deployed on the current nodes. Nodes created afterwards (e.g. with the Cluster Autoscaler) won't be monitored.
@@ -163,7 +163,7 @@ $ kubectl gadget run --detach -f manifest.yaml
 $ POD_NAME=$(kubectl get pods -n gadget -o jsonpath="{.items[0].metadata.name}")
 $ kubectl -n gadget port-forward $POD_NAME 2224:2224 &
 $ curl http://localhost:2224/metrics -s | grep ^runcwatcher
-runcwatcher_total{cve="CVE_2025_52881",otel_scope_name="runcwatcher",otel_scope_schema_url="",otel_scope_version="",reason="REASON_PROCFS_PATH_MISMATCH"} 2
+runcwatcher_total{cve="CVE-2025-31133",otel_scope_name="runcwatcher",otel_scope_schema_url="",otel_scope_version="",reason="REASON_PROCFS_PATH_MISMATCH"} 2
 ```
 
 ## Limitations
